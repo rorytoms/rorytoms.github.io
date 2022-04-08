@@ -1,8 +1,13 @@
-
+let box1;
+let button1;
+let button2;
 
 function setup() 
 {
-    createCanvas(800,800);
+    createCanvas(windowWidth,windowHeight);
+    box1 = new Box(0,height/3,width,height/2);
+    button1 = new Button(width/2,height/4,200,200,0);
+    button2 = new Button(width/2,height/4*3,200,200,height/2);
 }
 
 function draw() 
@@ -12,21 +17,38 @@ function draw()
     fill(255,0,255);
     noStroke();
 
-    for(var j = 0; j < 20; j ++)
-    {
-        for(var i = 0; i < 20; i++)
-        {
-//            var w = i + 1;
-//            var h = j + 1;
-            var r = dist(mouseX,mouseY,50 + i * 30,50 + j * 30)/dist(50,50,20*30,20*30);
-            var offset = random(0,1) * r * 20;
-            ellipse(
-            50 + i * 30 + offset,
-            50 + j * 30 + offset,
-            r*30,r*30
-            );
-        }
-    }
+    
 
+
+    button1.show();
+    button2.show();
+
+
+    box1.update();
+    box1.show();
  
+}
+
+function mousePressed() {
+    box1.pressed();
+    if(button1.pressed())
+    {
+        box1.y = button1.c;
+    };
+    if(button2.pressed())
+    {
+        box1.y = button2.c;
+    };
+}
+
+function mouseReleased() {
+    box1.released();
+}
+
+function windowResized(){
+	resizeCanvas(windowWidth, windowHeight);
+    box1.w = width;
+    box1.h = height/2;
+    button1.x = width /2;
+    button1.y = height/4;
 }
