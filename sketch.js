@@ -51,4 +51,6 @@ function windowResized(){
     box1.h = height/2;
     button1.x = width /2;
     button1.y = height/4;
+    button2.x = width /2;
+    button2.y = height/4*3;
 }
